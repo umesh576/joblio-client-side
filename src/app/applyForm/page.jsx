@@ -1,16 +1,42 @@
 "use client";
 import { useParams } from "next/navigation";
 import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 const FormPost = () => {
   const params = useParams();
   const postId = params.postId;
   // useEffect(() => {});
-  const handelForm = (e) => {
+  const handelForm = async (e) => {
     e.preventDefault();
     const fromData = new FormData(e.currentTarget);
-    const obj = Object.fromEntries(fromData.entries());
-    console.log(obj);
+    const appliedData = Object.fromEntries(fromData.entries());
+    appliedData.postId = postId;
+    console.log(appliedData);
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/applypost/apply",
+        {
+          method: "POST",
+          body: appliedData,
+        }
+      );
+      const data = await response.json();
+      if (response.ok) {
+        toast.success("Your application was submit sucessfully.");
+        obj = {
+          userId: "",
+          postId: "",
+          firstName: "",
+          lastname: "",
+          experience: "",
+        };
+      } else {
+        toast.error("Something error in submit your application.");
+      }
+    } catch (e) {
+      toast.error("404 error from backend");
+    }
   };
   return (
     <div>

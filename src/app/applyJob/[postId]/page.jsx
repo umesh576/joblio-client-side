@@ -32,13 +32,17 @@ const ApplyJobPage = () => {
 
   const handleApply = async () => {
     try {
-      console.log(localStorage.getItem("access_token"));
+      const token = localStorage.getItem("authToken");
+      console.log(token);
+      if (!token) {
+        toast.error("authenciation failed");
+        router.push("/login");
+      }
       // Check authentication only when button is clicked
       const authCheck = await fetch("http://localhost:5000/api/auth/check", {
-        // headers: {
-        //   Authorization: `Bearer ${localStorage.getItem("access_token")}`, // Retrieve token from storage
-        // },
-        credentials: "include",
+        headers: {
+          Authorization: `BEARER ${token}`, // Retrieve token from storage
+        },
       });
 
       if (!authCheck.ok) {

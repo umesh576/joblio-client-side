@@ -31,6 +31,10 @@ export default function LoginForm() {
       } else {
         alert(result.message || "❌ Something went wrong");
       }
+
+      const token = result.token;
+      console.log(token);
+      localStorage.setItem("authToken", token);
     } catch (error) {
       console.error("Login error:", error);
       alert("❌ Something went wrong. Please try again.");
