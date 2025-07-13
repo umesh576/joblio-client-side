@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import SignupForm from "@/components/signup/SignupPage";
+import SignupForm from "../../components/signup/SignupPage";
 const Page = () => {
   return (
     <div className=" flex justify-center py-10 ">

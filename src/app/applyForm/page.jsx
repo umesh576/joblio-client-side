@@ -63,6 +63,7 @@ const UploadIcon = () => (
 );
 
 const FormPost = () => {
+  const [submit, isSubmit] = useState(false);
   const searchParams = useSearchParams();
   const postId = searchParams.get("postId");
   const userId = searchParams.get("userId");
@@ -279,6 +280,7 @@ const FormPost = () => {
             </div>
 
             {/* Submit Button */}
+
             <div className="pt-6">
               <button
                 type="submit"

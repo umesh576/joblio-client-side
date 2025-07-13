@@ -2,78 +2,135 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Menu, X } from "lucide-react"; // for hamburger icons
+import { Menu, X } from "lucide-react";
+import { FaBriefcase, FaUser, FaUserPlus } from "react-icons/fa";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-white shadow-md  top-0 z-50 sticky">
-      <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-        {/* Brand */}
-        <div className="text-2xl font-bold text-blue-700">ServiceSystem</div>
-
-        {/* Desktop Nav Links */}
-        <div className="hidden md:flex space-x-6 text-sm font-medium text-gray-700">
-          <Link href="/">Home</Link>
-          <Link href="/services">Services</Link>
-          <Link href="/about">About</Link>
+    <header className="bg-white shadow-sm fixed w-full z-50">
+      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+        <div className="flex items-center">
+          <div className="bg-blue-700 w-10 h-10 rounded-full flex items-center justify-center">
+            <FaBriefcase className="text-white text-xl" />
+          </div>
+          <h1 className="ml-3 text-2xl font-bold text-blue-800">
+            Career<span className="text-blue-500">Connect</span>
+          </h1>
         </div>
 
-        {/* Auth Buttons - Desktop */}
-        <div className="hidden md:flex gap-3">
+        {/* Mobile Menu Button */}
+        <button
+          className="md:hidden text-blue-800"
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label="Toggle menu"
+        >
+          {isOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center space-x-8">
           <Link
-            href="/login"
-            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+            href="/"
+            className="text-blue-800 font-medium hover:text-blue-600"
           >
-            Login
+            Home
           </Link>
           <Link
-            href="/signup"
-            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+            href="/services"
+            className="text-blue-800 font-medium hover:text-blue-600 border-b-2 border-blue-500"
           >
-            Signup
+            Services
           </Link>
-        </div>
+          <Link
+            href="/about"
+            className="text-blue-800 font-medium hover:text-blue-600"
+          >
+            About
+          </Link>
+          <Link
+            href="/contact"
+            className="text-blue-800 font-medium hover:text-blue-600"
+          >
+            Contact
+          </Link>
 
-        {/* Mobile menu button */}
-        <div className="md:hidden">
-          <button onClick={() => setIsOpen(!isOpen)}>
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div className="md:hidden px-4 pb-4">
-          <div className="flex flex-col gap-3 text-gray-700">
-            <Link href="/" onClick={() => setIsOpen(false)}>
-              Home
-            </Link>
-            <Link href="/services" onClick={() => setIsOpen(false)}>
-              Services
-            </Link>
-            <Link href="/about" onClick={() => setIsOpen(false)}>
-              About
-            </Link>
+          {/* Desktop Auth Buttons */}
+          <div className="flex items-center space-x-4 ml-4">
             <Link
               href="/login"
-              className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-              onClick={() => setIsOpen(false)}
+              className="flex items-center bg-blue-50 hover:bg-blue-100 text-blue-700 px-4 py-2 rounded-lg font-medium transition duration-300"
             >
+              <FaUser className="mr-2" />
               Login
             </Link>
             <Link
               href="/signup"
-              className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+              className="flex items-center bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition duration-300"
+            >
+              <FaUserPlus className="mr-2" />
+              Sign Up
+            </Link>
+          </div>
+        </nav>
+      </div>
+
+      {/* Mobile Navigation Menu */}
+      {isOpen && (
+        <div className="md:hidden bg-white border-t">
+          <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
+            <Link
+              href="/"
+              className="text-blue-800 font-medium hover:text-blue-600 py-2"
               onClick={() => setIsOpen(false)}
             >
-              Signup
+              Home
             </Link>
+            <Link
+              href="/services"
+              className="text-blue-800 font-medium hover:text-blue-600 py-2 border-b-2 border-blue-500 w-max"
+              onClick={() => setIsOpen(false)}
+            >
+              Services
+            </Link>
+            <Link
+              href="/about"
+              className="text-blue-800 font-medium hover:text-blue-600 py-2"
+              onClick={() => setIsOpen(false)}
+            >
+              About
+            </Link>
+            <Link
+              href="/contact"
+              className="text-blue-800 font-medium hover:text-blue-600 py-2"
+              onClick={() => setIsOpen(false)}
+            >
+              Contact
+            </Link>
+
+            {/* Mobile Auth Buttons */}
+            <div className="flex flex-col space-y-3 mt-4">
+              <Link
+                href="/login"
+                className="flex items-center justify-center bg-blue-50 hover:bg-blue-100 text-blue-700 px-4 py-2 rounded-lg font-medium transition duration-300"
+                onClick={() => setIsOpen(false)}
+              >
+                <FaUser className="mr-2" />
+                Login
+              </Link>
+              <Link
+                href="/signup"
+                className="flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition duration-300"
+                onClick={() => setIsOpen(false)}
+              >
+                <FaUserPlus className="mr-2" />
+                Sign Up
+              </Link>
+            </div>
           </div>
         </div>
       )}
-    </nav>
+    </header>
   );
 }
