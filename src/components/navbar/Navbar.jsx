@@ -9,7 +9,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="bg-white shadow-sm fixed w-full z-50">
+    <header className="sticky top-0 bg-white shadow-sm  w-full z-50">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <div className="flex items-center">
           <div className="bg-blue-700 w-10 h-10 rounded-full flex items-center justify-center">
@@ -54,6 +54,12 @@ export default function Navbar() {
             className="text-blue-800 font-medium hover:text-blue-600"
           >
             Contact
+          </Link>
+          <Link
+            href="/profile"
+            className="text-blue-800 font-medium hover:text-blue-600"
+          >
+            Profile
           </Link>
 
           {/* Desktop Auth Buttons */}
@@ -107,6 +113,13 @@ export default function Navbar() {
               onClick={() => setIsOpen(false)}
             >
               Contact
+            </Link>
+            <Link
+              href="/profile"
+              className="text-blue-800 font-medium hover:text-blue-600 py-2"
+              onClick={() => setIsOpen(false)}
+            >
+              profile
             </Link>
 
             {/* Mobile Auth Buttons */}

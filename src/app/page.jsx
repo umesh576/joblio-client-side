@@ -2,7 +2,7 @@ import AllPost from "../components/allPost/AllPost";
 
 const Page = () => {
   return (
-    <div>
+    <div className="">
       <AllPost />
     </div>
   );

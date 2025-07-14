@@ -25,8 +25,10 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Navbar />
-        {children}
+        <div className="sticky top-0">
+          <Navbar className="relative" />
+        </div>
+        <div>{children}</div>
         <FooterSection />
         <ToastContainer
           position="top-right"
