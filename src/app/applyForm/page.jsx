@@ -84,16 +84,17 @@ const FormPost = () => {
         }
       );
 
-      // const data = await response.json();
+      const data = await response.json();
+      console.log(data);
 
       if (response.ok) {
         toast.success("Application submitted successfully!");
         e.target.reset();
       } else {
-        toast.error(data.message || "Submission failed");
+        toast.error(data.message);
       }
     } catch (error) {
-      toast.error("Network error");
+      toast.error(data.message);
     }
   };
   const [resumeName, setResumeName] = useState("");
