@@ -1,11 +1,3 @@
-// type InputProps = {
-//   label: string,
-//   type: string,
-//   placeholder?: string,
-//   value: string,
-//   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
-// };
-
 export default function Input({ label, type, placeholder, value, onChange }) {
   return (
     <div className="flex flex-col">
