@@ -61,10 +61,12 @@ const ApplyJobPage = () => {
     }
   };
 
-  if (loading) return <div className="text-center py-16">Loading...</div>;
-  if (!post)
+  if (loading) {
+    return <div className="text-center py-16">Loading...</div>;
+  }
+  if (!post) {
     return <div className="text-center py-16 text-red-500">Job not found</div>;
-
+  }
   return (
     <div className="container mx-auto max-w-3xl py-10 px-4">
       <h1 className="text-3xl font-bold text-blue-800 mb-4">{post.title}</h1>
