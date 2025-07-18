@@ -23,8 +23,6 @@ export default function LoginForm() {
       const result = await response.json();
       if (response.ok) {
         alert("✅ Login successful!");
-        // Optionally: redirect or store token
-        console.log("JWT Token:", result.token);
         router.push("/"); //or localStorage.setItem('token', result.token)
       } else if (response.status === 401) {
         alert("❌ Invalid email or password");

@@ -44,8 +44,9 @@ const ApplyJobPage = () => {
           Authorization: `BEARER ${token}`, // Retrieve token from storage
         },
       });
-      console.log(authCheck);
+      // console.log(authCheck);
       const data = await authCheck.json();
+      console.log(data);
       console.log(data.user._id);
       if (!authCheck.ok) {
         toast.info("Please login to apply for this job");
@@ -58,6 +59,7 @@ const ApplyJobPage = () => {
     } catch (error) {
       console.error("Authentication check failed:", error);
       toast.error("Failed to verify authentication");
+      router.push("/login");
     }
   };
 
