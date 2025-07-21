@@ -22,7 +22,7 @@ const ApplyJobPage = () => {
         setPost(data.data);
       } catch (error) {
         console.error("Failed to fetch job details:", error);
-        toast.error("Failed to load job details");
+        toast.error("Failed to loading job details");
       } finally {
         setLoading(false);
       }
