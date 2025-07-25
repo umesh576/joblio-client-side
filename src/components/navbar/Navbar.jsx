@@ -39,7 +39,7 @@ export default function Navbar() {
           </Link>
           <Link
             href="/services"
-            className="text-blue-800 font-medium hover:text-blue-600 border-b-2 border-blue-500"
+            className="text-blue-800 font-medium hover:text-blue-600 "
           >
             Services
           </Link>
