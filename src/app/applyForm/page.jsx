@@ -4,6 +4,7 @@
 import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 // Icons (can be imported from @heroicons/react or similar)
 const UserIcon = () => (
   <svg
@@ -63,6 +64,7 @@ const UploadIcon = () => (
 );
 
 const FormPost = () => {
+  const router = useRouter();
   const [submit, isSubmit] = useState(false);
   const searchParams = useSearchParams();
   const postId = searchParams.get("postId");
