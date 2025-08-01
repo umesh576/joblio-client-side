@@ -92,6 +92,7 @@ const FormPost = () => {
       if (response.ok) {
         toast.success("Application submitted successfully!");
         e.target.reset();
+        router.push("/");
       } else {
         toast.error(data.message);
       }
