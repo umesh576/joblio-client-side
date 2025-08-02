@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import Head from "next/head";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 const AllPost = () => {
   const router = useRouter();
@@ -9,6 +10,7 @@ const AllPost = () => {
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const [category, setcategory] = useState([]);
 
   // Fetch all posts from backend API
   const fetchPosts = async () => {
@@ -16,7 +18,7 @@ const AllPost = () => {
     try {
       const response = await fetch("http://localhost:5000/api/post/seeAll");
       const data = await response.json();
-      setPosts(data.data || []);
+      setPosts(data.data);
     } catch (error) {
       console.error("Error fetching posts:", error);
     } finally {
@@ -32,7 +34,7 @@ const AllPost = () => {
   useEffect(() => {
     fetchPosts();
   }, []);
-
+  console.log(posts);
   // Format salary for display
   const formatSalary = (salary) => {
     if (!salary) return "Salary not specified";
@@ -224,17 +226,9 @@ const AllPost = () => {
                 {/* Post image if available */}
                 {post.picturePost?.length > 0 && (
                   <div className="h-48 w-full overflow-hidden">
-                    {/* <Image
-                      src={post.picturePost[0]}
-                      alt={post.title}
-                      width={1000}
-                      height={1000}
-                      className="w-full h-full object-cover"
-                    /> */}
                     <img
-                      src={post.picturePost[0]}
-                      alt={post.title}
-                      className="w-full h-full object-cover"
+                      src={`http://localhost:5000/${post.picturePost[0]}`}
+                      alt="image"
                     />
                   </div>
                 )}
@@ -246,7 +240,7 @@ const AllPost = () => {
                       {post.title}
                     </h2>
                     <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-1 rounded-full whitespace-nowrap">
-                      {post.jobCategory?.name || "General"}
+                      {posts.jobCategory?.name || "General"}
                     </span>
                   </div>
 
