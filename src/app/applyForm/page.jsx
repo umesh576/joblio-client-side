@@ -65,12 +65,13 @@ const UploadIcon = () => (
 
 const FormPost = () => {
   const router = useRouter();
-  const [submit, isSubmit] = useState(false);
+  const [submit, isSubmit] = useState(true);
   const searchParams = useSearchParams();
   const postId = searchParams.get("postId");
   const userId = searchParams.get("userId");
 
   const handleSubmit = async (e) => {
+    isSubmit(false);
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
 
@@ -91,6 +92,7 @@ const FormPost = () => {
 
       if (response.ok) {
         toast.success("Application submitted successfully!");
+        isSubmit(true);
         e.target.reset();
         router.push("/");
       } else {
@@ -340,7 +342,7 @@ const FormPost = () => {
                 type="submit"
                 className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200"
               >
-                Submit Application
+                {isSubmit ? <p>Submit Application</p> : <p>Sumitting....</p>}
               </button>
             </div>
           </form>
